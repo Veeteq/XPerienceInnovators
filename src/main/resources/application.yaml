@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: Customer Data API
+  main:
+    web-application-type: servlet
+
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+  datasource:
+    url: jdbc:h2:mem:local
+    username: db
+    password:
+    driverClassName: org.h2.Driver
+  sql:
+    init:
+      schema-locations: classpath:sql/schema.sql
+      data-locations: classpath:sql/data.sql
+  h2:
+    console.enabled: true
+
+server:
+  port: 8282
+
+# Azure OpenAI properties
+azure:
+  openai:
+    endpoint: https://elephantazureopenai.openai.azure.com/openai/deployments/gpt-4o/chat/completions?api-version=2024-08-01-preview
+    api-key: 1Su30LVlA9WsWmhlh1DaMrAYSnpjeknIfnkyzCOxg6MBxdcbPoe6JQQJ99AKACmepeSXJ3w3AAABACOGFzNP
+
+  # Azure Search properties
+  search:
+    endpoint: https://elephant-ai-search.search.windows.net/
+    api-key: OlD4W2KoonBrWDYu6aqL6zSmWwd8Yg0JUeXIu3hfDtAzSeA1wbzt
+    index-name: petpolcy
+
