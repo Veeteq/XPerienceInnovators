@@ -69,6 +69,9 @@ public class Policy {
     @Column(name = "medical_conditions")
     private String medicalConditions;
 
+    @Column(name = "level_of_cover")
+    private String levelOfCover;
+
     public Long getId() {
         return id;
     }
@@ -246,6 +249,15 @@ public class Policy {
 
     public Policy setPolicyType(String policyType) {
         this.policyType = policyType;
+        return this;
+    }
+
+    public String getLevelOfCover() {
+        return levelOfCover;
+    }
+
+    public Policy setLevelOfCover(String levelOfCover) {
+        this.levelOfCover = levelOfCover;
         return this;
     }
 }

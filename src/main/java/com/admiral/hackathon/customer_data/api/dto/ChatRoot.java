@@ -47,6 +47,9 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         @JsonIgnore
         private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
 
+        @JsonProperty("data_sources")
+        private List<DataSourceDto> dataSources = new LinkedList<>();
+
         @JsonProperty("messages")
         public List<MessageDto> getMessages() {
             return messages;
@@ -127,4 +130,12 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
             this.additionalProperties.put(name, value);
         }
 
+        public List<DataSourceDto> getDataSources() {
+            return dataSources;
+        }
+
+        public ChatRoot addDataSource(DataSourceDto dataSources) {
+            this.dataSources.add(dataSources);
+            return this;
+        }
     }

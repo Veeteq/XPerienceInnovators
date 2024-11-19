@@ -57,6 +57,9 @@ public class PolicyDto {
     @JsonProperty("HasMedicalConditions")
     private String hasMedicalConditions;
 
+    @JsonProperty("LevelOfCoverage")
+    private String levelOfCover;
+
     public String getPolicyNumber() {
         return policyNumber;
     }
@@ -207,6 +210,15 @@ public class PolicyDto {
 
     public PolicyDto setHasMedicalConditions(String hasMedicalConditions) {
         this.hasMedicalConditions = hasMedicalConditions;
+        return this;
+    }
+
+    public String getLevelOfCover() {
+        return levelOfCover;
+    }
+
+    public PolicyDto setLevelOfCover(String levelOfCover) {
+        this.levelOfCover = levelOfCover;
         return this;
     }
 }

@@ -1,8 +1,6 @@
 package com.admiral.hackathon.customer_data.service;
 
-import com.admiral.hackathon.customer_data.api.dto.ChatRequestDto;
-import com.admiral.hackathon.customer_data.api.dto.ChatRoot;
-import com.admiral.hackathon.customer_data.api.dto.MessageDto;
+import com.admiral.hackathon.customer_data.api.dto.*;
 import com.admiral.hackathon.customer_data.api.dto.chat.response.ChatResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -53,6 +51,7 @@ public class AzureSearchService {
         root.setMaxTokens(800);
         root.addMessage(setContext(clientData));
         root.addMessage(setCustomerMessage(request.getPrompt()));
+        root.addDataSource(createDataSource(setContext(clientData).getContent()));
 
         var spec = webClient.post()
                 .bodyValue(root)
@@ -65,6 +64,8 @@ public class AzureSearchService {
         var responseSpec = spec.retrieve();
         var response = responseSpec.bodyToMono(ChatResponse.class)
                 .block();
+
+        System.out.println(response);
         return response;
     }
 
@@ -128,6 +129,30 @@ public class AzureSearchService {
         message.setRole("user");
         message.setContent(prompt);
         return message;
+    }
+
+    private DataSourceDto createDataSource(String roleInformation) {
+        var authentication = new AuthenticationDto();
+        authentication.type = "api_key";
+        authentication.key = "OlD4W2KoonBrWDYu6aqL6zSmWwd8Yg0JUeXIu3hfDtAzSeA1wbzt";
+
+        var parameters = new ParametersDto();
+        parameters.endpoint = "https://elephant-ai-search.search.windows.net";
+        parameters.index_name = "petpolcy";
+        parameters.semantic_configuration = "default";
+        parameters.query_type = "semantic";
+//        parameters.fields_mapping = new FieldsMappingDto(){};
+        parameters.in_scope = true;
+        parameters.filter = null;
+        parameters.strictness = 3;
+        parameters.top_n_documents = 5;
+        parameters.authentication = authentication;
+        parameters.role_information = roleInformation;
+
+        var dataSource = new DataSourceDto();
+        dataSource.type = "azure_search";
+        dataSource.parameters = parameters;
+        return dataSource;
     }
 
 }
