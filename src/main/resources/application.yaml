@@ -28,11 +28,11 @@ server:
 azure:
   openai:
     endpoint: https://elephantazureopenai.openai.azure.com/openai/deployments/gpt-4o/chat/completions?api-version=2024-08-01-preview
-    api-key: ${openai-api-key}
+    api-key: ${openai_api_key}
 
   # Azure Search properties
   search:
     endpoint: https://elephant-ai-search.search.windows.net/
-    api-key: ${search-api-key}
+    api-key: ${search_api_key}
     index-name: petpolcy
 
