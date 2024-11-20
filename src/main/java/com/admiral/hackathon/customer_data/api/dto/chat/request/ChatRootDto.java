@@ -1,4 +1,4 @@
-package com.admiral.hackathon.customer_data.api.dto;
+package com.admiral.hackathon.customer_data.api.dto.chat.request;
 
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -21,7 +21,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
             "max_tokens",
             "stop"
     })
-    public class ChatRoot {
+    public class ChatRootDto {
 
         @JsonProperty("messages")
         private List<MessageDto> messages = new LinkedList<>();
@@ -134,7 +134,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
             return dataSources;
         }
 
-        public ChatRoot addDataSource(DataSourceDto dataSources) {
+        public ChatRootDto addDataSource(DataSourceDto dataSources) {
             this.dataSources.add(dataSources);
             return this;
         }

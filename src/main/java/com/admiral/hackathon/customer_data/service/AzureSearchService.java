@@ -1,6 +1,7 @@
 package com.admiral.hackathon.customer_data.service;
 
 import com.admiral.hackathon.customer_data.api.dto.*;
+import com.admiral.hackathon.customer_data.api.dto.chat.request.*;
 import com.admiral.hackathon.customer_data.api.dto.chat.response.ChatResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -8,7 +9,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestClient;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import java.nio.charset.StandardCharsets;
@@ -42,7 +42,7 @@ public class AzureSearchService {
             throw new RuntimeException(e);
         }
 
-        ChatRoot root = new ChatRoot();
+        ChatRootDto root = new ChatRootDto();
         root.setStop(null);
         root.setTemperature(0.7);
         root.setTopP(0.95);

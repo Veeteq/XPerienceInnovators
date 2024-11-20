@@ -5,6 +5,10 @@ create table accounts (
     holder_phone_number varchar(100),
     holder_email        varchar(100)
 );
+create unique index accounts_idx on accounts(id);
+create unique index accounts_email_idx on accounts(holder_email);
+alter table accounts add constraint accounts_pk primary key (id);
+
 create sequence accounts_seq start with 1 increment by 1 nocache;
 
 create table policies (
@@ -30,4 +34,8 @@ create table policies (
     level_of_cover      varchar(100),
     medical_conditions  varchar(3)
 );
+create unique index policies_idx on policies(id);
+alter table policies add constraint policies_pk primary key (id);
+alter table policies add constraint policies_account_fk foreign key (account_id) references accounts (id);
+
 create sequence policies_seq start with 1 increment by 1 nocache;

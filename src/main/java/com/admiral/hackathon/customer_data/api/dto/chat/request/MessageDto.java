@@ -1,4 +1,4 @@
-package com.admiral.hackathon.customer_data.api.dto;
+package com.admiral.hackathon.customer_data.api.dto.chat.request;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
