@@ -4,9 +4,12 @@ import com.admiral.hackathon.customer_data.api.dto.MotorDto;
 import com.admiral.hackathon.customer_data.api.dto.PetDto;
 import com.admiral.hackathon.customer_data.api.dto.VeygoDto;
 import com.admiral.hackathon.customer_data.api.dto.data.AccountDto;
+import com.admiral.hackathon.customer_data.api.dto.data.PolicyDto;
 import com.admiral.hackathon.customer_data.entity.Account;
+import com.admiral.hackathon.customer_data.entity.Policy;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.factory.Mappers;
 
 @Mapper(componentModel = "spring")
 public interface AccountMapper {
@@ -34,4 +37,8 @@ public interface AccountMapper {
     @Mapping(source = "phoneNumber", target = "userPhoneNumber")
     @Mapping(source = "email", target = "userEmail")
     AccountDto toDto(Account account);
+
+    default PolicyDto toDto(Policy policy) {
+        return Mappers.getMapper(PolicyMapper.class).toDto(policy);
+    }
 }

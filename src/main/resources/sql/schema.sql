@@ -28,10 +28,6 @@ create table policies (
     pet_age_months      integer,
     pedigree            varchar(3),
     level_of_cover      varchar(100),
-    medical_conditions          varchar(3),
-    account_holder_name         varchar(100),
-    account_holder_address      varchar(100),
-    account_holder_phone_number varchar(100),
-    account_holder_email        varchar(100)
+    medical_conditions  varchar(3)
 );
 create sequence policies_seq start with 1 increment by 1 nocache;
