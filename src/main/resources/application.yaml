@@ -35,4 +35,5 @@ azure:
     endpoint: https://elephant-ai-search.search.windows.net/
     api-key: ${SEARCH_API_KEY}
     index-name: finalindex
+    input-file: "data/general.dat"
 

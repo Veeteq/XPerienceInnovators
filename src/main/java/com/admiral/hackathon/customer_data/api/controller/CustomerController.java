@@ -29,5 +29,6 @@ public class CustomerController {
 
         var result = customerDataService.getCustomerData(email);
         return ResponseEntity.ok(result);
+        
     }
 }
