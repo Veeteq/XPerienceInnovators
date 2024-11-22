@@ -1,12 +1,16 @@
 package com.admiral.hackathon.customer_data.service;
 
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.net.URI;
 import java.nio.charset.StandardCharsets;
+import java.text.MessageFormat;
 import java.time.ZonedDateTime;
 import java.util.HashMap;
 import java.util.Map;
@@ -33,6 +37,11 @@ public class CustomerDataService {
     public String getCustomerData(String email) {
         email = email.toLowerCase();
         var url = settings.get(email);
+
+        if (url == null) {
+            var msg = MessageFormat.format("Customer not found with email: {}", email);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, msg);
+        }
 
         var spec = webClient.get()
                 .uri(URI.create(url))
