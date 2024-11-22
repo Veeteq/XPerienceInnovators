@@ -3,8 +3,6 @@ package com.admiral.hackathon.customer_data.service;
 import com.admiral.hackathon.customer_data.api.dto.*;
 import com.admiral.hackathon.customer_data.api.dto.chat.request.*;
 import com.admiral.hackathon.customer_data.api.dto.chat.response.ChatResponse;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -16,6 +14,9 @@ import java.time.ZonedDateTime;
 
 @Service
 public class AzureSearchService {
+
+    @Value(value = "${azure.search.index-name}")
+    private String indexName;
 
     private final CustomerDataService customerService;
     private final WebClient webClient;
@@ -156,7 +157,7 @@ public class AzureSearchService {
 
         var parameters = new ParametersDto();
         parameters.endpoint = "https://elephant-ai-search.search.windows.net";
-        parameters.index_name = "finalindex";
+        parameters.index_name = indexName;
         parameters.semantic_configuration = "default";
         parameters.query_type = "semantic";
 //        parameters.fields_mapping = new FieldsMappingDto(){};
