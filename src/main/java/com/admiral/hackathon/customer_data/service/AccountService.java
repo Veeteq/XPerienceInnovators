@@ -1,6 +1,5 @@
 package com.admiral.hackathon.customer_data.service;
 
-import com.admiral.hackathon.customer_data.api.controller.AccountController;
 import com.admiral.hackathon.customer_data.api.dto.data.AccountDto;
 import com.admiral.hackathon.customer_data.api.mapper.AccountMapper;
 import com.admiral.hackathon.customer_data.repository.AccountRepository;
